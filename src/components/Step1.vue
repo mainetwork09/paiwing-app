@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       items: [
-        { title: "test test", content: "aabb" },
+        { title: "Weed Day #1", content: "aabb" },
         { title: "test test2", content: "aabb" },
       ],
     };
