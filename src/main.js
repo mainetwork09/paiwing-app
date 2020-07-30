@@ -20,7 +20,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes // short for `routes: routes`
+  routes: routes, // short for `routes: routes`
+  mode: 'history'
 })
 
 const vuetify = new Vuetify({
