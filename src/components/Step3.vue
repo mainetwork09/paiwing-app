@@ -47,7 +47,10 @@ export default {
       }, 400);
     },
     finishRegister: function () {
-      var liff = this.$liff;
+      let liff = this.$liff;
+      let accessToken = liff.getAccessToken();
+      let pushUrl = "https://paiwing.com/linepush.php";
+      /*
       this.$liff
         .sendMessages([
           {
@@ -61,6 +64,22 @@ export default {
         })
         .catch(function (error) {
           window.alert(error);
+        });
+*/
+      fetch(pushUrl, {
+        method: "post",
+        mode: "no-cors",
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        },
+        body: "token=" + accessToken,
+      })
+        .then(function (data) {
+          console.info("success");
+          console.log(data);
+        })
+        .catch(function (err) {
+          console.log("Request failed", err);
         });
     },
   },

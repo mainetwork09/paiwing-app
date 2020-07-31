@@ -16,6 +16,7 @@ Vue.prototype.$liff = window.liff
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(Vuetify)
+//Vue.use(VueAxios)
 
 const routes = [
   {
