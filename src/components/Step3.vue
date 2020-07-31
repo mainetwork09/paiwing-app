@@ -66,6 +66,7 @@ export default {
           window.alert(error);
         });
 */
+      liff.closeWindow();
       fetch(pushUrl, {
         method: "post",
         mode: "no-cors",
