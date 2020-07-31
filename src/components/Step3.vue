@@ -4,7 +4,7 @@
       <h3>Select Race Group</h3>
 
       <v-list>
-        <v-list-item v-for="item in items" :key="item.title" @click="nextStep(item)">
+        <v-list-item v-for="item in items" :key="item.title" @click="finishRegister()">
           <v-list-item-icon>
             <v-icon color="pink">mdi-decagram</v-icon>
           </v-list-item-icon>
@@ -23,6 +23,21 @@
 export default {
   name: "Step3",
 
+  beforeCreate: function () {
+    /*this.$liff
+      .init({
+        liffId: "1561133255-7gzQ2vlA",
+      })
+      .then(() => {
+        if (!this.$liff.isLoggedIn()) {
+          this.$liff.login();
+        }
+      })
+      .catch(function (error) {
+        console.error(error);
+      });*/
+  },
+
   methods: {
     nextStep: function (item) {
       console.log(item);
@@ -30,6 +45,23 @@ export default {
       setTimeout(function () {
         router.push("/step3");
       }, 400);
+    },
+    finishRegister: function () {
+      var liff = this.$liff;
+      this.$liff
+        .sendMessages([
+          {
+            type: "text",
+            text: "Registration Complete!",
+          },
+        ])
+        .then(function () {
+          //window.alert("success");
+          liff.closeWindow();
+        })
+        .catch(function (error) {
+          window.alert(error);
+        });
     },
   },
 
