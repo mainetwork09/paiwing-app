@@ -47,9 +47,10 @@ export default {
         method: "post",
         mode: "no-cors",
         headers: {
-          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+          Accept: "application/json",
+          "Content-type": "application/json; charset=UTF-8",
         },
-        body: jsonData,
+        body: JSON.stringify(jsonData),
       })
         .then(function (data) {
           console.info("success");
