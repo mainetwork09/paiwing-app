@@ -1,7 +1,8 @@
 <template>
   <v-container>
     <div class="step-one">
-      <router-link to="/profile">ข้อมูลส่วนตัว</router-link>
+      <router-link to="/profile">ข้อมูลส่วนตัว</router-link>&nbsp;| &nbsp;
+      <router-link to="/my-races">รายการที่ลงไว้</router-link>
       <v-list>
         <v-list-item v-for="item in items" :key="item.title" @click="nextStep(item)">
           <v-list-item-icon>
@@ -27,23 +28,14 @@ export default {
       console.log(item);
       let router = this.$router;
       setTimeout(function () {
-        router.push("/step2");
+        router.push("/race/" + item.race_id);
       }, 400);
     },
   },
 
   data() {
     return {
-      items: [
-        {
-          title: "Running Day #1",
-          date_schedule: new Date("2021-01-15").toDateString(),
-        },
-        {
-          title: "Running Day #2",
-          date_schedule: new Date("2021-01-15").toDateString(),
-        },
-      ],
+      items: this.$store.state.race_items,
     };
   },
 };

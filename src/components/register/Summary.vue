@@ -65,7 +65,6 @@ export default {
         });
     },
   },
-
   beforeCreate: function () {},
 };
 </script>
