@@ -1,12 +1,12 @@
 <template>
   <v-container>
     <div class="step-one">
-      <h3>Select Race</h3>
+      <h3>Select Race Type</h3>
 
       <v-list>
         <v-list-item v-for="item in items" :key="item.title" @click="nextStep(item)">
           <v-list-item-icon>
-            <v-icon color="pink">mdi-star</v-icon>
+            <v-icon color="pink">mdi-decagram</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
@@ -21,14 +21,15 @@
 
 <script>
 export default {
-  name: "Step1",
+  name: "Step2",
 
   methods: {
     nextStep: function (item) {
       console.log(item);
       let router = this.$router;
+      this.$store.dispatch("setOrderRaceType", item.title);
       setTimeout(function () {
-        router.push("/step2");
+        router.push("/register/order-summary");
       }, 400);
     },
   },
@@ -36,8 +37,8 @@ export default {
   data() {
     return {
       items: [
-        { title: "Weed Day #1", content: "aabb" },
-        { title: "test test2", content: "aabb" },
+        { title: "Mini Marathon", content: "run only 10km" },
+        { title: "Half Marathon", content: "run only 21km" },
       ],
     };
   },

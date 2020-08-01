@@ -1,8 +1,6 @@
 <template>
   <v-container>
     <div class="step-one">
-      <h3>Select Race</h3>
-
       <v-list>
         <v-list-item v-for="item in items" :key="item.title" @click="nextStep(item)">
           <v-list-item-icon>
@@ -28,23 +26,14 @@ export default {
       console.log(item);
       let router = this.$router;
       setTimeout(function () {
-        router.push("/step2");
+        router.push("/race/" + item.race_id);
       }, 400);
     },
   },
 
   data() {
     return {
-      items: [
-        {
-          title: "Running Day #1",
-          date_schedule: new Date("2021-01-15").toDateString(),
-        },
-        {
-          title: "Running Day #2",
-          date_schedule: new Date("2021-01-15").toDateString(),
-        },
-      ],
+      items: this.$store.state.race_items,
     };
   },
 };

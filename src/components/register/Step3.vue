@@ -50,22 +50,6 @@ export default {
       let liff = this.$liff;
       let accessToken = liff.getAccessToken();
       let pushUrl = "https://paiwing.com/linepush.php";
-      /*
-      this.$liff
-        .sendMessages([
-          {
-            type: "text",
-            text: "Registration Complete!",
-          },
-        ])
-        .then(function () {
-          //window.alert("success");
-          liff.closeWindow();
-        })
-        .catch(function (error) {
-          window.alert(error);
-        });
-*/
 
       fetch(pushUrl, {
         method: "post",
