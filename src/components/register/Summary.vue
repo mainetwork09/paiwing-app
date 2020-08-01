@@ -34,9 +34,9 @@ export default {
       //let router = this.$router;
       let store = this.$store;
       let payload = {};
-      /*let liff = this.$liff;
-      let accessToken = liff.getAccessToken();*/
-      let accessToken = "aabb"; // mockup
+      let liff = this.$liff;
+      let accessToken = liff.getAccessToken();
+      //let accessToken = "aabb"; // mockup
       let pushUrl = "https://paiwing.com/linepush.php";
       console.log(store.state.order);
       payload.order = store.state.order;
@@ -58,7 +58,7 @@ export default {
         .then(function (data) {
           console.info("success");
           console.log(data);
-          //liff.closeWindow();
+          liff.closeWindow();
         })
         .catch(function (err) {
           console.log("Request failed", err);
