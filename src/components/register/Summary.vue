@@ -31,40 +31,47 @@ export default {
 
   methods: {
     checkout: function () {
+      //let router = this.$router;
+      let pushUrl = "https://paiwing.com/linepush.php";
+      let liff, accessToken;
+      let store = this.$store;
+      let payload = {};
+
       if (process.env.NODE_ENV === "production") {
-        //let router = this.$router;
-        let store = this.$store;
-        let payload = {};
-        let liff = this.$liff;
-        let accessToken = liff.getAccessToken();
-        //let accessToken = "aabb"; // mockup
-        let pushUrl = "https://paiwing.com/linepush.php";
-        console.log(store.state.order);
-        payload.order = store.state.order;
-        payload.token = accessToken;
-
-        console.log(payload);
-
-        var postData = new FormData();
-        postData.append("json", JSON.stringify(payload));
-
-        fetch(pushUrl, {
-          method: "post",
-          mode: "no-cors",
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-          body: JSON.stringify(payload),
-        })
-          .then(function (data) {
-            console.info("success");
-            console.log(data);
-            liff.closeWindow();
-          })
-          .catch(function (err) {
-            console.log("Request failed", err);
-          });
+        liff = this.$liff;
+        accessToken = liff.getAccessToken();
+      } else {
+        liff = null;
       }
+
+      payload.order = store.state.order;
+      if (process.env.NODE_ENV === "production") {
+        payload.token = accessToken;
+      }
+
+      console.log(payload);
+
+      var postData = new FormData();
+      postData.append("json", JSON.stringify(payload));
+
+      fetch(pushUrl, {
+        method: "post",
+        mode: "no-cors",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(payload),
+      })
+        .then(function (data) {
+          console.info("success");
+          console.log(data);
+          if (liff) {
+            liff.closeWindow();
+          }
+        })
+        .catch(function (err) {
+          console.log("Request failed", err);
+        });
     },
   },
   beforeCreate: function () {},
