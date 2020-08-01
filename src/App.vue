@@ -63,7 +63,7 @@ export default {
   }),
 
   beforeCreate: function () {
-    /*this.$liff
+    this.$liff
       .init({
         liffId: "1561133255-7gzQ2vlA",
       })
@@ -74,7 +74,7 @@ export default {
       })
       .catch(function (error) {
         console.error(error);
-      });*/
+      });
   },
 };
 </script>
