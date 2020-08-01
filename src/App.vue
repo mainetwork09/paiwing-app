@@ -63,7 +63,9 @@ export default {
   }),
 
   beforeCreate: function () {
-    this.$liff
+    console.log("env", process.env);
+    //if(process.env.NODE_ENV === "development") {}
+    /*this.$liff
       .init({
         liffId: "1561133255-7gzQ2vlA",
       })
@@ -74,7 +76,7 @@ export default {
       })
       .catch(function (error) {
         console.error(error);
-      });
+      });*/
   },
 };
 </script>
