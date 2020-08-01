@@ -63,20 +63,20 @@ export default {
   }),
 
   beforeCreate: function () {
-    console.log("env", process.env);
-    //if(process.env.NODE_ENV === "development") {}
-    /*this.$liff
-      .init({
-        liffId: "1561133255-7gzQ2vlA",
-      })
-      .then(() => {
-        if (!this.$liff.isLoggedIn()) {
-          this.$liff.login();
-        }
-      })
-      .catch(function (error) {
-        console.error(error);
-      });*/
+    if (process.env.NODE_ENV === "production") {
+      this.$liff
+        .init({
+          liffId: "1561133255-7gzQ2vlA",
+        })
+        .then(() => {
+          if (!this.$liff.isLoggedIn()) {
+            this.$liff.login();
+          }
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }
   },
 };
 </script>
